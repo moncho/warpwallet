@@ -7,6 +7,11 @@ import (
 	"golang.org/x/crypto/scrypt"
 )
 
+type result struct {
+	seed []byte
+	err  error
+}
+
 type seedGenerator func() ([]byte, error)
 
 func scryptSeed(passphrase, salt string) seedGenerator {
@@ -23,27 +28,41 @@ func pbkdf2Seed(passphrase, salt string) seedGenerator {
 	}
 }
 
-func xorSeeds(seeds ...seedGenerator) seedGenerator {
+func xorSeeds(generators ...seedGenerator) seedGenerator {
 	return func() ([]byte, error) {
-		var keys [][]byte
-		var err error
+
+		genCount := len(generators)
+		results := make(chan result, genCount)
+		done := make(chan struct{})
+		defer close(results)
+		defer close(done)
+
+		for _, g := range generators {
+			go func(s seedGenerator) {
+				b, err := s()
+				select {
+				case results <- result{b, err}:
+				case <-done:
+				}
+
+			}(g)
+		}
+
 		var finalKey []byte
-		for _, s := range seeds {
-			if b, sErr := s(); sErr == nil {
-				keys = append(keys, b)
+
+		for i := 0; i < genCount; i++ {
+			r := <-results
+			if r.err != nil {
+				return nil, r.err
+			}
+			if finalKey == nil {
+				finalKey = r.seed
 			} else {
-				err = sErr
+				blockXOR(finalKey, r.seed)
 			}
 		}
 
-		if len(keys) > 0 {
-			finalKey = make([]byte, len(keys[0]))
-			copy(finalKey, keys[0])
-			for _, key := range keys[1:] {
-				blockXOR(finalKey, key)
-			}
-		}
-		return finalKey, err
+		return finalKey, nil
 	}
 }
 
