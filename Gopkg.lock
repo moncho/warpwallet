@@ -13,9 +13,15 @@
   packages = ["pbkdf2","ripemd160","scrypt"]
   revision = "eb71ad9bd329b5ac0fd0148dd99bd62e8be8e035"
 
+[[projects]]
+  branch = "master"
+  name = "rsc.io/qr"
+  packages = [".","coding","gf256"]
+  revision = "48b2ede4844e13f1a2b7ce4d2529c9af7e359fc5"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "a73e3fc9e000eb9894fd778a1b0fba6dca15201765e0f38370de7d1feed263d3"
+  inputs-digest = "edac7fbf337dc2bad8278059814cdfaf5c07377cbbf08e4bb6da9f667c594f80"
   solver-name = "gps-cdcl"
   solver-version = 1
