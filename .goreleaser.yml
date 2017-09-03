@@ -10,3 +10,12 @@ builds:
     goarch:
       - amd64
       - arm
+brew:
+  github:
+    owner: moncho
+    name: homebrew-warpwallet
+  folder: Formula
+  homepage:  http://github.com/moncho/warpwallet
+  description: A deterministic bitcoin address generator 
+  test: |
+    system "#{bin}/warpwallet"
