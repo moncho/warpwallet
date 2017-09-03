@@ -13,5 +13,9 @@ So, if you feel confident that the original tool is a safe way to generate a Bit
 
 ## Usage
 
-Run `warpwallet` on a terminal, it will ask for a passphrase and a salt, then, from the input, it will generate a private key on [WIF](https://en.bitcoin.it/wiki/Wallet_import_format) format and the corresponding [version 1 Bitcoin public address](https://en.bitcoin.it/wiki/Technical_background_of_version_1_Bitcoin_addresses). 
+Run `warpwallet` on a terminal, it will ask for a passphrase and a salt, then it will generate a private key on [WIF](https://en.bitcoin.it/wiki/Wallet_import_format) format and the corresponding [version 1 Bitcoin public address](https://en.bitcoin.it/wiki/Technical_background_of_version_1_Bitcoin_addresses). 
+
+## Why
+
+I thought it would be cool to run **warpwallet** on a terminal. 
 
