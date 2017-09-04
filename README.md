@@ -1,4 +1,7 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)](https://raw.githubusercontent.com/moncho/warpwallet/master/LICENSE)
+[![Build Status](https://travis-ci.org/moncho/warpwallet.svg?branch=master)](https://travis-ci.org/moncho/warpwallet)
+[![codecov](https://codecov.io/gh/moncho/warpwallet/branch/master/graph/badge.svg)](https://codecov.io/gh/moncho/warpwallet)
+[![Go Report Card](https://goreportcard.com/badge/github.com/moncho/warpwallet)](https://goreportcard.com/report/github.com/moncho/warpwallet)
 
 # Warpwallet
 
