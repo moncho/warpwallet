@@ -9,6 +9,10 @@
 
 The address-generation algorithm has been implemented as described in [Keybase/warp](https://keybase.io/warp). All credit for the algorithm goes to the original authors.
 
+## Demo
+
+[![asciicast](https://asciinema.org/a/136298.png)](https://asciinema.org/a/136298?autoplay=1)
+
 ## Disclaimer
 
 Handle with care, if you intend to use this tool for generating a Bitcoin wallet, make sure you understand the [risks](https://eprint.iacr.org/2016/103.pdf) of using [brain wallets](https://en.bitcoin.it/wiki/Brainwallet). 
