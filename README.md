@@ -20,6 +20,12 @@ Handle with care, if you intend to use this tool for generating a Bitcoin wallet
 Said that, I am fairly confident that the implementation faithfully matches the original implementation (all tests created for the original tool have been added and are passing). 
 So, if you feel confident that the original tool is a safe way to generate a Bitcoin wallet, this tool should be safe for usage as well.
 
+## Installation
+
+Precompiled binaries can be found on the [releases page](https://github.com/moncho/warpwallet/releases). Select the one for your OS and arch.
+
+**Warpwallet** may also be compiled from source wherever there is a Go compiler. Just clone the project and `make build`.
+
 ## Usage
 
 Run `warpwallet` on a terminal, it will ask for a passphrase and a salt, then it will generate a private key on [WIF](https://en.bitcoin.it/wiki/Wallet_import_format) format and the corresponding [version 1 Bitcoin public address](https://en.bitcoin.it/wiki/Technical_background_of_version_1_Bitcoin_addresses). 
