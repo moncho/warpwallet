@@ -9,7 +9,7 @@ import (
 const (
 	//Base58BitcoinSymbolChart see https://en.bitcoin.it/wiki/Base58Check_encoding
 	Base58BitcoinSymbolChart     = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
-	base58BitcoinSymbolChartIdx0 = "1"
+	base58BitcoinSymbolChartIdx0 = '1'
 
 	//PrivateKeyVersionPrefix is the prefix of WIF encoded strings
 	//see https://en.bitcoin.it/wiki/List_of_address_prefixes
@@ -37,12 +37,12 @@ func b58encode(b []byte) string {
 	//Convert bytes to big integer
 	x := new(big.Int).SetBytes(b)
 	r := new(big.Int)
-	var result string
 
+	result := make([]byte, 0, len(b)*136/100)
 	for x.Cmp(zero) > 0 {
 		// x, r = (x / 58, x % 58)
 		x, r = x.QuoRem(x, base, r)
-		result = string(Base58BitcoinSymbolChart[r.Int64()]) + result
+		result = append(result, Base58BitcoinSymbolChart[r.Int64()])
 	}
 
 	// leading zero bytes
@@ -50,10 +50,16 @@ func b58encode(b []byte) string {
 		if i != 0 {
 			break
 		}
-		result = base58BitcoinSymbolChartIdx0 + result
+		result = append(result, base58BitcoinSymbolChartIdx0)
 	}
 
-	return result
+	// reverse
+	rlen := len(result)
+	for i := 0; i < rlen/2; i++ {
+		result[i], result[rlen-1-i] = result[rlen-1-i], result[i]
+	}
+
+	return string(result)
 }
 
 //Base58CheckEncode encodes the given byte array in Bitcoin into human-typable strings.
