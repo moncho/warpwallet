@@ -36,13 +36,13 @@ func main() {
 	}
 
 	var wifQR bytes.Buffer
-	if err := qr.Encode(wif, &wifQR); err != nil {
+	if err := qr.Copy(&wifQR, strings.NewReader(wif)); err != nil {
 		fmt.Printf("Could not generate QR code for WIF: %s", err.Error())
 		os.Exit(-1)
 	}
 	var pubAddressQR bytes.Buffer
 
-	if err := qr.Encode(pubAddress, &pubAddressQR); err != nil {
+	if err := qr.Copy(&pubAddressQR, strings.NewReader(pubAddress)); err != nil {
 		fmt.Printf("Could not generate QR code for pubAddress: %s", err.Error())
 		os.Exit(-1)
 	}

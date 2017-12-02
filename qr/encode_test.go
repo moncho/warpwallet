@@ -2,6 +2,7 @@ package qr
 
 import (
 	"bytes"
+	"strings"
 	"testing"
 )
 
@@ -23,7 +24,7 @@ func TestQRWritingDoesNotFail(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			w := &bytes.Buffer{}
-			if err := Encode(tt.args.text, w); (err != nil) != tt.wantErr {
+			if err := Copy(w, strings.NewReader(tt.args.text)); (err != nil) != tt.wantErr {
 				t.Errorf("Encode() error = %v, wantErr %v", err, tt.wantErr)
 			}
 
