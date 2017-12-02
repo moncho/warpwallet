@@ -2,6 +2,7 @@ package bitcoin
 
 import (
 	"encoding/hex"
+	"reflect"
 	"testing"
 
 	"github.com/moncho/warpwallet/warp"
@@ -271,4 +272,40 @@ func Test_BitcoinPrivKeyGeneration(t *testing.T) {
 		}
 	}
 
+}
+
+func Test_paddedPrepend(t *testing.T) {
+	type args struct {
+		size uint
+		src  []byte
+	}
+	tests := []struct {
+		name string
+		args args
+		want []byte
+	}{
+		{
+			"paddedPrepend does not do anything when slice has the wanted length",
+			args{
+				16,
+				[]byte("YELLOW SUBMARINE"),
+			},
+			[]byte("YELLOW SUBMARINE"),
+		},
+		{
+			"paddedPrepend prepends 0 to reach the expected length",
+			args{
+				18,
+				[]byte("YELLOW SUBMARINE"),
+			},
+			[]byte("\x00\x00YELLOW SUBMARINE"),
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := paddedPrepend(tt.args.size, tt.args.src); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("paddedPrepend() = %v, want %v", got, tt.want)
+			}
+		})
+	}
 }

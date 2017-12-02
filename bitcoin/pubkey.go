@@ -59,6 +59,7 @@ func serializeUncompressed(pub ecdsa.PublicKey) []byte {
 }
 
 // serializeCompressed serializes a public key to a 33-byte compressed format.
+// See https://bitcoin.org/en/developer-guide#mini-private-key-format
 func serializeCompressed(pub ecdsa.PublicKey) []byte {
 	var prefix byte
 	if isOdd(pub.Y) {
