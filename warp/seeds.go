@@ -28,6 +28,7 @@ func pbkdf2Seed(passphrase, salt string) seedGenerator {
 	}
 }
 
+//xorSeeds xor's the result of the given seedGenerators
 func xorSeeds(generators ...seedGenerator) seedGenerator {
 	return func() ([]byte, error) {
 
@@ -38,6 +39,7 @@ func xorSeeds(generators ...seedGenerator) seedGenerator {
 		defer close(done)
 
 		for _, g := range generators {
+
 			go func(s seedGenerator) {
 				b, err := s()
 				select {
