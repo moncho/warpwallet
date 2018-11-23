@@ -1,4 +1,4 @@
-FROM golang:1.9-alpine as builder
+FROM golang:1.11-alpine as builder
 ARG GOOS=linux
 WORKDIR /go/src/github.com/moncho/warpwallet/
 COPY .    .
