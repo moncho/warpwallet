@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"bytes"
+	"flag"
 	"fmt"
 	"os"
 	"strings"
@@ -13,8 +14,13 @@ import (
 	"github.com/moncho/warpwallet/warp"
 )
 
-func main() {
+var quiet bool
 
+func main() {
+	flag.BoolVar(&quiet, "quiet", false, "just print the private key")
+	flag.BoolVar(&quiet, "q", false, "just print the private key (shorthand)")
+
+	flag.Parse()
 	piped := seedsFromPipe()
 	pass, salt := promptSeeds(piped)
 
@@ -46,7 +52,11 @@ func main() {
 		fmt.Printf("Could not generate QR code for pubAddress: %s", err.Error())
 		os.Exit(-1)
 	}
-	print(wif, wifQR.String(), pubAddress, pubAddressQR.String())
+	if quiet {
+		fmt.Println(wif)
+	} else {
+		print(wif, wifQR.String(), pubAddress, pubAddressQR.String())
+	}
 }
 
 func print(wif, wifQR, pubAddress, pubAddressQR string) {
@@ -62,7 +72,6 @@ func print(wif, wifQR, pubAddress, pubAddressQR string) {
 
 	for i, line := range pub {
 		fmt.Printf("%s\t\t%s\n", string(line), string(wif2[i]))
-
 	}
 }
 
