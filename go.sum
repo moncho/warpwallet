@@ -1,0 +1,8 @@
+github.com/btcsuite/btcd v0.0.0-20170828085025-3cb87afa2fc0 h1:7HRhxx+monKFsivWDkbfTl8sMKIJK5ulG9EPPZGpGmQ=
+github.com/btcsuite/btcd v0.0.0-20170828085025-3cb87afa2fc0/go.mod h1:Dmm/EzmjnCiweXmzRIAiUWCInVmPgjkzgv5k4tVyXiQ=
+github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
+github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+golang.org/x/crypto v0.0.0-20170818135134-eb71ad9bd329 h1:1HbsYqDgQeTUBGT5OO+Chqw1TqtjU0tc2BRrEWx85AI=
+golang.org/x/crypto v0.0.0-20170818135134-eb71ad9bd329/go.mod h1:6SG95UA2DQfeDnfUPMdvaQW0Q7yPrPDi9nlGo2tz2b4=
+rsc.io/qr v0.1.0 h1:M/sAxsU2J5mlQ4W84Bxga2EgdQqOaAliipcjPmMUM5Q=
+rsc.io/qr v0.1.0/go.mod h1:IF+uZjkb9fqyeF/4tlBoynqmQxUoPfWEKh921coOuXs=
