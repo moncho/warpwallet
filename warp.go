@@ -3,8 +3,9 @@ package warp
 import (
 	"bufio"
 	"bytes"
-	"flag"
+	"errors"
 	"fmt"
+	"math/rand"
 	"os"
 	"strings"
 
@@ -16,29 +17,33 @@ import (
 
 var quiet bool
 
-func WarpWallet() string {
-	flag.BoolVar(&quiet, "quiet", false, "just print the private key")
-	flag.BoolVar(&quiet, "q", false, "just print the private key (shorthand)")
+func GenerateRandomString(length int) string {
+	var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+	b := make([]rune, length)
+	for i := range b {
+		b[i] = letters[rand.Intn(len(letters))]
+	}
+	return string(b)
+}
+func GenerateWallet() (string, error) {
 
-	flag.Parse()
-	piped := seedsFromPipe()
-	pass, salt := promptSeeds(piped)
-
+	pass := GenerateRandomString(15)
+	salt := GenerateRandomString(15)
 	if pass == "" || salt == "" {
-		fmt.Println("A pass and some salt are required")
-		os.Exit(-1)
+		return "", errors.New("A pass and some salt are required")
+
 	}
 
 	key, err := warp.NewSeed(pass, salt)
 
 	if err != nil {
-		fmt.Printf("Could not generate wallet seed from %s, %s: %s", pass, salt, err.Error())
-		os.Exit(-1)
+		return "", errors.New("Could not generate wallet seed from " + pass + salt + err.Error())
+
 	}
 
 	wif, pubAddress := generate(key)
 	if wif == "" || pubAddress == "" {
-		os.Exit(-1)
+		return "", errors.New("Could not generate wallet")
 	}
 
 	var wifQR bytes.Buffer
@@ -55,8 +60,9 @@ func WarpWallet() string {
 	if quiet {
 		fmt.Println(wif)
 	} else {
-		return pubAddress
+		return pubAddress, nil
 	}
+	return "", errors.New("returned nothing?")
 }
 
 func print(wif, wifQR, pubAddress, pubAddressQR string) {
