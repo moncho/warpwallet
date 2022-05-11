@@ -1,4 +1,4 @@
-package main
+package warp
 
 import (
 	"bufio"
@@ -16,7 +16,7 @@ import (
 
 var quiet bool
 
-func main() {
+func WarpWallet() string {
 	flag.BoolVar(&quiet, "quiet", false, "just print the private key")
 	flag.BoolVar(&quiet, "q", false, "just print the private key (shorthand)")
 
@@ -55,7 +55,7 @@ func main() {
 	if quiet {
 		fmt.Println(wif)
 	} else {
-		print(wif, wifQR.String(), pubAddress, pubAddressQR.String())
+		return pubAddress
 	}
 }
 
