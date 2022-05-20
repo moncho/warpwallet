@@ -11,7 +11,7 @@ import (
 const (
 	//PubKeyCompressedEvenPrefix is the prefix to be used for compressed address format of even keys encoding
 	PubKeyCompressedEvenPrefix = 0x02
-	//PubKeyCompressedOddPrefix is the prefix to be used for compressed address format of odd keys enconding
+	//PubKeyCompressedOddPrefix is the prefix to be used for compressed address format of odd keys encoding
 	PubKeyCompressedOddPrefix = 0x03
 
 	//PubKeyUncompressedVPrefix is the prefix to be used for uncompressed address format encoding

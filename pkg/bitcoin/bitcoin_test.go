@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/moncho/warpwallet/warp"
+	"github.com/moncho/warpwallet/pkg/warp"
 )
 
 type warpWalletInput struct {
